@@ -50,6 +50,22 @@ void decode_instruction(const char* asm_code, Instruction* instr) {
         instr->rd = rd;
         instr->shamt = 0;
         instr->funct = 32; // Código da função para add
+    } else if (strcmp(operation, "sub") == 0) { 
+        sscanf(asm_code, "%*s $%d, $%d, $%d", &rd, &rs, &rt);
+        instr->opcode = 0; // Tipo R tem opcode 0
+        instr->rs = rs;
+        instr->rt = rt;
+        instr->rd = rd;
+        instr->shamt = 0;
+        instr->funct = 34; // Código da função para sub
+    } else if (strcmp(operation, "div") == 0) { // Tipo R
+        sscanf(asm_code, "%*s $%d, $%d, $%d", &rd, &rs, &rt);
+        instr->opcode = 0; // Tipo R
+        instr->rs = rs;
+        instr->rt = rt;
+        instr->rd = rd;
+        instr->shamt = 0;
+        instr->funct = 26; // Código da função para div
     } else if (strcmp(operation, "and") == 0) { // Tipo R
         sscanf(asm_code, "%*s $%d, $%d, $%d", &rd, &rs, &rt);
         instr->opcode = 0; // Tipo R
@@ -97,6 +113,26 @@ void execute_instruction(const Instruction* instr, MIPS_Registers* regs, MIPS_Me
                        regs->registers[instr->rs],
                        regs->registers[instr->rt],
                        regs->registers[instr->rd]);
+                break;
+            case 34: // sub
+                regs->registers[instr->rd] =
+                    regs->registers[instr->rs] - regs->registers[instr->rt];
+                printf("Subtração realizada: %d - %d = %d\n",
+                       regs->registers[instr->rs], 
+                       regs->registers[instr->rt], 
+                       regs->registers[instr->rd]);
+                break;
+            case 26: // div
+                if (regs->registers[instr->rt] != 0) { // Verificar divisão por zero
+                    regs->registers[instr->rd] =
+                        regs->registers[instr->rs] / regs->registers[instr->rt];
+                    printf("Divisão realizada: %d / %d = %d\n",
+                           regs->registers[instr->rs],
+                           regs->registers[instr->rt],
+                           regs->registers[instr->rd]);
+                } else {
+                    printf("Erro: Divisão por zero não permitida.\n");
+                }
                 break;
             case 36: // and
                 regs->registers[instr->rd] =
