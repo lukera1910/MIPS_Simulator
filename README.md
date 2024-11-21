@@ -1,7 +1,7 @@
-# 👷: Integrantes
+# 👷 Integrantes
 Arthur Phelipe Meyer Santos, Lucas Gabriel Carvalho e Andrey Kusman
 
-# 🔨: Funcionalidades
+# 🔨 Funcionalidades
 
 - Faz a leitura de instruções assembly do MIPS;
 - Apresenta na tela seu formato estrutural, contendo os valores decimais de cada parte;
