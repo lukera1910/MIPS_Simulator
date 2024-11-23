@@ -12,3 +12,6 @@ Arthur Phelipe Meyer Santos, Lucas Gabriel Carvalho e Andrey Kusman
 Depois de clonar o repositório na sua pasta local, rode os seguintes comandos no terminal:
 - `gcc main.c -o mips_simulator`: para compilar
 - `./mips_simulator`: para executar
+
+# 🔗 Link para o vídeo contendo a explicação do projeto
+- https://youtu.be/M05zFaPLt28
